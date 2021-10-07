@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import * as C from "./App.styles";
+import {Item} from './types/Item';
+import {Category} from './types/Category';
+import {categories} from './data/categories';
+import {items} from './data/items';
+import {getCurrentMonth,filterByMonth} from './helpers/dateFilter';
 
-function App() {
+const App = () => {
+  const [list,setList] = useState(items);
+  const [filteredList,setFilteredList] = useState<Item[]>([]);
+  const [currentMonth,setCurrentMonth] = useState(getCurrentMonth());
+    
+  useEffect(() => {
+    setFilteredList(filterByMonth(list,currentMonth));
+  } , [list,currentMonth]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <C.Container>
+      <C.Header>
+        <C.HeaderText>Finances Controller</C.HeaderText>
+      </C.Header>
+      <C.Body>
+        {/* Info Area */}
+
+        {/* Insert info Area */}
+
+        {/* Show Info Table Area */}
+
+
+      </C.Body>
+    </C.Container>
   );
-}
+};
 
 export default App;
