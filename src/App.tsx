@@ -7,6 +7,7 @@ import { categories } from "./data/categories";
 import { items } from "./data/items";
 import { getCurrentMonth, filterByMonth } from "./helpers/dateFilter";
 import { TableArea } from "./components/tableArea";
+import { InfoArea } from "./components/InfoArea";
 
 const App = () => {
   const [list, setList] = useState(items);
@@ -17,13 +18,20 @@ const App = () => {
     setFilteredList(filterByMonth(list, currentMonth));
   }, [list, currentMonth]);
 
+  const handleMonthChange = (newMonth: string) => {
+    setCurrentMonth(newMonth);
+  };
+
   return (
     <C.Container>
       <C.Header>
         <C.HeaderText>Finances Controller</C.HeaderText>
       </C.Header>
       <C.Body>
-        {/* Info Area */}
+        <InfoArea
+          currentMonth={currentMonth}
+          onMonthChange={handleMonthChange}
+        />
 
         {/* Insert info Area */}
 
